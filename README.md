@@ -3,11 +3,29 @@
 Playwright + TypeScript 기반 E2E 테스트 자동화 데모 레포지토리입니다.  
 실제 운영 중인 시스템([tapas-qa](https://github.com/RheeSuho/tapas-qa))의 핵심 패턴을 공개 가능한 형태로 정리했습니다.
 
-**실제 운영 지표 (2026.06 기준)**
-- 자동화 TC: PC Web 251개 + MWeb 294개 = **545개**
-- 전체 실행: **30분 이내** (PC Web + MWeb)
-- 수동 검증 대비: **약 12배 단축** (수동 약 6시간 → 30분 이내)
-- 현재 실패: **0건** (Prod + QA 4개 환경)
+📊 **[Live Test Report 바로 보기](https://rheesuho.github.io/tapas-qa/)**
+
+---
+
+**실제 운영 지표 (2026.08 기준)**
+
+- 자동화 TC: PC Web 224개 + MWeb 217개 = **441개**
+- 전체 실행: PC Web **약 18분** + MWeb **약 27분** (합산 약 45분)
+- 수동 검증 대비: **약 8배 단축** (수동 약 6시간 → 약 45분)
+- 현재 실패: **1건** (MWeb PROD — 원인 조사 중)
+
+### 최신 리포트 결과
+
+| 환경 | 전체 | Pass | Fail | Skip | 실행 시간 |
+|------|------|------|------|------|-----------|
+| PC Web PROD | 224 | 195 | 0 | 29 | 17m 35s |
+| MWeb PROD | 217 | 192 | 1 | 24 | 27m 27s |
+
+**PC Web**
+![PC Web 리포트](docs/report-pcweb.png)
+
+**MWeb**
+![MWeb 리포트](docs/report-mweb.png)
 
 ---
 
@@ -39,7 +57,7 @@ tapas-qa-demo/
 Google Sheets에 작성된 TC를 Gherkin `.feature` 파일로 변환합니다.  
 TC 문서를 수정하면 자동으로 코드가 수정되어 이중 관리가 없습니다.
 
-```gherkin
+```
 # features/02-search/search.feature
 Scenario: [TPS-042] 키워드 검색 결과 노출
   Given 홈 화면에 접속한다
@@ -79,7 +97,7 @@ await page.getByPlaceholder('Search').fill(keyword);
 // await page.locator('//*[@id="app"]/div[2]/header/div/button[1]').click();
 ```
 
-### 4. 거짓 통과 방지 — C수준 Assertion
+### 4. 거짓 통과 방지 — 실질적 Assertion
 
 단순히 "페이지가 뜨는지"가 아닌 실제 요소 노출까지 검증합니다.
 
@@ -118,7 +136,7 @@ npm run test:bdd
 # 브라우저 화면 보면서 실행
 npm run test:bdd:headed
 
-# Allure 리포트 확인
+# Playwright 리포트 확인
 npm run report
 ```
 
@@ -133,7 +151,7 @@ GitHub Actions로 평일 매일 오전 9시(KST) 자동 실행됩니다.
         ↓
 GitHub Actions — Playwright 실행
         ↓
-Allure 리포트 → GitHub Pages 자동 배포
+Playwright 리포트 → GitHub Pages 자동 배포
         ↓
 Slack 결과 알림 (실패 시 Jira 버튼 자동 생성)
 ```
@@ -150,10 +168,10 @@ Slack 결과 알림 (실패 시 Jira 버튼 자동 생성)
 | 자동화 엔진 | Playwright, TypeScript |
 | BDD 프레임워크 | playwright-bdd, Gherkin |
 | CI/CD | GitHub Actions |
-| 리포팅 | Allure, GitHub Pages |
+| 리포팅 | Playwright HTML Report, GitHub Pages |
 | 알림 / 이슈 | Slack Webhook, Jira REST API |
 | 스크립팅 | Python (TC 변환), Node.js |
 
 ---
 
-문의: ruben.lee@dktechin.com
+문의: <ruben.lee@dktechin.com>
