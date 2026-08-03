@@ -1,0 +1,21 @@
+{
+  "name": "tapas-qa-demo",
+  "version": "1.0.0",
+  "scripts": {
+    "bddgen": "bddgen",
+    "test": "bddgen && playwright test",
+    "test:bdd": "bddgen && playwright test",
+    "test:bdd:headed": "bddgen && playwright test --headed",
+    "test:setup": "playwright test --project=setup",
+    "report": "allure serve allure-results"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.44.0",
+    "allure-playwright": "^3.0.0",
+    "playwright-bdd": "^8.0.0",
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,8 @@
+node_modules/
+.auth/
+.env
+playwright-report/
+allure-results/
+allure-report/
+test-results/
+.features-gen/
