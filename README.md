@@ -22,10 +22,10 @@ Playwright + TypeScript 기반 E2E 테스트 자동화 데모 레포지토리입
 | MWeb PROD | 217 | 192 | 1 | 24 | 27m 27s |
 
 **PC Web**
-![PC Web 리포트](docs/report-pcweb.png)
+![PC Web 리포트](/report-pcweb.png)
 
 **MWeb**
-![MWeb 리포트](docs/report-mweb.png)
+![MWeb 리포트](report-mweb.png)
 
 ---
 
